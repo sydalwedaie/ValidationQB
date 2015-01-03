@@ -84,6 +84,11 @@ $(function () {
 	        $(this).children().next().hide();
 	        $(this).children().next().slideDown(100);
 	    }
-
 	});
+	$(".category-subjects").hide();
+        $("[type=radio]").click(function(){
+        	var checkedCategory = $('input[name=radio-category]:checked').val();
+                $("#"+checkedCategory+"-subjects").show();
+                $("#"+checkedCategory+"-subjects").siblings(".category-subjects").hide();
+        });
 });

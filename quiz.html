@@ -26,6 +26,28 @@
 
         <div data-role="content" class="content">
             <h2>Create Your Own Quiz<h2>
+            <form method="post" action="demoform.asp">
+                <fieldset data-role="controlgroup" id="category">
+                    <legend>Test my knowledge on:</legend>
+                </fieldset>
+
+                <fieldset data-role="controlgroup" id="limitations-subjects" class="category-subjects">
+                    <legend>Limitations</legend>
+                </fieldset>
+
+                <fieldset data-role="controlgroup" id="systems-subjects" class="category-subjects">
+                    <legend>Systems</legend>
+                </fieldset>
+
+                <fieldset data-role="controlgroup" id="test-subjects" class="category-subjects">
+                    <legend>test</legend>
+                </fieldset>
+                
+                <fieldset data-role="controlgroup" id="test2-subjects" class="category-subjects">
+                    <legend>test2</legend>
+                </fieldset>
+
+            </form>
         </div>
 
         <div data-role="footer" data-position="fixed" class="footer">
@@ -36,7 +58,31 @@
 
     <script src="js/appBuilder.js"></script>
     <script>
-        displayQuiz ()
+        $("#category").append(JQMinputRadio.replace(/%data%/g, "limitations"));
+        $("#category").append(JQMinputRadio.replace(/%data%/g, "systems"));
+        $("#category").append(JQMinputRadio.replace(/%data%/g, "test"));
+        $("#category").append(JQMinputRadio.replace(/%data%/g, "test2"));
+
+        for (subject in limitations) {
+            var subjectTitle = limitations[subject][0].title;
+            $("#limitations-subjects").append(JQMinputCheck.replace(/%data%/g, subjectTitle));
+        }
+
+        for (subject in systems) {
+            var subjectTitle = systems[subject][0].title;
+            $("#systems-subjects").append(JQMinputCheck.replace(/%data%/g, subjectTitle));
+        }
+
+        for (subject in systems) {
+            var subjectTitle = systems[subject][0].title;
+            $("#test-subjects").append(JQMinputCheck.replace(/%data%/g, subjectTitle+" test"));
+        }
+
+         for (subject in systems) {
+            var subjectTitle = systems[subject][0].title;
+            $("#test2-subjects").append(JQMinputCheck.replace(/%data%/g, subjectTitle+" test2"));
+        }
+
     </script>
 
 

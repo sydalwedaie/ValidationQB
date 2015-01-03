@@ -13,23 +13,24 @@ body h1, body h2, body p {
     box-shadow: none !important;
 }
 
-.ui-grid-b .ui-block-a, .ui-grid-b .ui-block-b{
+/* A320 - A321 table styling */
+.ui-collapsible .ui-grid-b .ui-block-a, .ui-collapsible .ui-grid-b .ui-block-b{
     padding: 10px 0;
     width: 50%;
 }
 
-.ui-grid-b .ui-block-a {
+.ui-collapsible .ui-grid-b .ui-block-a {
 	border-right: 1px solid #bebebe;
 	padding-right: 10px;
 }
 
-.ui-grid-b .ui-block-b {
+.ui-collapsible .ui-grid-b .ui-block-b {
 	margin-left: -1px;
 	border-left: 1px solid #bebebe;
 	padding-left: 10px;
 }
 
-.ui-grid-b .ui-block-head {
+.ui-collapsible .ui-grid-b .ui-block-head {
 	text-align: center;
 	padding: 0 0 10px 0;
 	border-bottom: 1px solid #bebebe;

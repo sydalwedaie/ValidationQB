@@ -67,21 +67,3 @@ limitations = [
     }
 ]
 ]
-
-
-/*
-"general" : [
-    {
-      "question": "",
-      "a320": "",
-      "a321": "",
-      "illustrations": []
-    },
-    {
-      "question": "",
-      "a320": "",
-      "a321": "",
-      "illustrations": []
-    }
-  ],
- */

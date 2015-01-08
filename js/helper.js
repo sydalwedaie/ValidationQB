@@ -40,9 +40,13 @@ var JQMgridA321 = '<div class="ui-block-b">%data%</div>';
 
 var JQMimg = '<img src="%data%" class="illustrations">'
 
+var JQMquizSubject =   '<fieldset data-role="controlgroup" id="%data%-subjects" class="category-subjects">' +
+                   		'<legend>%data%</legend>' +
+                	'</fieldset>';
+
 var JQMinputRadio = '<label for="radio-%data%">%data%</label>' +
-                    '<input type="radio" name="radio-category" id="radio-%data%" value="%data%">'
+                    '<input type="radio" name="radio-category" id="radio-%data%" value="%data%">';
 
 var JQMinputCheck = '<label for="check-%data%">%data%</label>' +
-                    '<input type="checkbox" name="check-%data%" id="check-%data%" value="%data%">'
+                    '<input type="checkbox" name="check-%data%" id="check-%data%" value="%data%">';
 

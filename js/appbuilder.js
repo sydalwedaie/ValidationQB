@@ -1,12 +1,15 @@
-//variables 
-var systems;
-var limitations;
+
 
 //helper functions
 function makeLinkID(title) {
-		var linkID = title.split(" ")[0].toLowerCase();
-		return linkID;
-	};
+	var linkID = title.split(" ")[0].toLowerCase();
+	return linkID;
+};
+
+function questionCounter (category,subject) {
+	var questionCount = category[subject].length;
+	return questionCount;
+};
 
 //add info-data
 $("<p>"+info.purpose+"</p>").insertAfter("#home .content #purpose");
@@ -22,16 +25,20 @@ function displayQuestions(category) {
 	var categoryName = category[0][0].category;
 	$("#"+categoryName+"Home .content").append("<p>"+info[categoryName]+"</p>");
 	for (subject in category) {
+		category[subject][0].questionCount = category[subject].length;
+		var questionCount = category[subject][0].questionCount;
 		var subjectTitle = category[subject][0].title;
 		var subjectID = makeLinkID(subjectTitle);
 
 		$(JQMpage.replace("%data%",subjectID)).insertAfter("section:last");
-		$("#"+subjectID+":last").append(JQMpageHeader.replace("%data%",subjectTitle));
+		$("#"+subjectID+":last").append(JQMpageHeader.replace("%data%",subjectTitle+" ("+questionCount+")"));
 		$("#"+subjectID+":last").append(JQMpageContent);
 
 		for (question in category[subject]) {
+
 			var questionID = "q-"+subject+"-"+question;
 			var questionItem = category[subject][question];
+
 
 			$("#"+subjectID+" .content:last").append(JQMcollapsible.replace("%data%",questionID));
 			$("#"+questionID+":last").append(JQMcollapsibleH1.replace("%data%",questionItem.question));
@@ -49,22 +56,34 @@ function displayQuestions(category) {
 		}
 		$("#"+subjectID+":last").append(JQMpageFooter);
 	}
-}
-
-//testing dialogue pages
-$("#q-1-2").append('<a href="#pagetwo">Go to Dialog Page</a>');
-$('<div data-role="page" data-dialog="true" id="pagetwo"><div data-role="header"><h1>A Dialog Box!</h1></div><div data-role="main" class="ui-content"><p>The dialog box is different from a normal page</p><a href="#pageone">Go to Page One</a></div><div data-role="footer"><h1>Footer Text In Dialog</h1></div></div>').insertAfter("section:last");
+};
 
 //display panel
 function displayPanel(category) {
+
 	var categoryName = category[0][0].category;
 	$("#"+categoryName).prepend(JQMpanel);
 	for (subject in category) {
+		var questionCount = category[subject].length;
 		var subjectTitle = category[subject][0].title;
-		$("#"+categoryName+" #panel ul").append(JQMlistItem.replace("%data%",subjectTitle));
+		$("#"+categoryName+" #panel ul").append(JQMlistItem.replace("%data%",subjectTitle+" ("+questionCount+")"));
 		$("#"+categoryName+" #panel ul a:last").attr("href","#"+makeLinkID(subjectTitle));
 	}
-}
+};
+
+//display quize home
+function displayQuizHome(category) {
+    var categoryName = category[0][0].category;
+    $("form").append(JQMquizSubject.replace(/%data%/g, categoryName));
+    $("#category").append(JQMinputRadio.replace(/%data%/g, categoryName));
+    for (subject in category) {
+    	var questionCount = category[subject].length;
+        var subjectTitle = category[subject][0].title;
+        $("#"+categoryName+"-subjects").append(JQMinputCheck.replace(/%data%/g, subjectTitle+" ("+questionCount+")"));
+    }
+
+    $("#question-count").attr("max","50");
+};
 
 
 //initializations
@@ -87,7 +106,7 @@ $(function () {
 	});
 	$(".category-subjects").hide();
         $("[type=radio]").click(function(){
-        	var checkedCategory = $('input[name=radio-category]:checked').val();
+        	var checkedCategory = $(this).val();
                 $("#"+checkedCategory+"-subjects").show();
                 $("#"+checkedCategory+"-subjects").siblings(".category-subjects").hide();
         });
